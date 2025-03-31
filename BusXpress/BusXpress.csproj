@@ -232,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Clients\" />
+    <Folder Include="Pages\Drivers\" />
+    <Folder Include="Pages\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
