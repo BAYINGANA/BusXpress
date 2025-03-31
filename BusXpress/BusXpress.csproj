@@ -209,6 +209,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Bus.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientAssignment.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverAssignment.cs" />
+    <Compile Include="Models\IndexModel.cs" />
+    <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\SalesReport.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
