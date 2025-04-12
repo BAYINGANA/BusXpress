@@ -1,0 +1,21 @@
+﻿@page
+@model BusManagement.Pages.Clients.IndexModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Welcome, Client!";
+}
+
+<!-- Render the Client Navigation Bar -->
+@await Html.PartialAsync("ClientNavigation")
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to Bus Management System!</h1>
+    <p class="lead">We are here to make your travel booking seamless and convenient.</p>
+    <hr />
+
+    <!-- Display Logged-in User Info -->
+    <h4>User Details:</h4>
+    <p><strong>Email:</strong> @User.Identity?.Name</p>
+    <p><strong>Role:</strong> @User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</p>
+    <p><strong>User ID:</strong> @User.FindFirst("UserId")?.Value</p>
+</div>

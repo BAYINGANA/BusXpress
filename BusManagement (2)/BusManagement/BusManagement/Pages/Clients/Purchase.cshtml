@@ -1,0 +1,43 @@
+﻿@page
+@model BusManagement.Pages.Clients.PurchaseModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Purchase Ticket";
+}
+@await Html.PartialAsync("ClientNavigation")
+
+<h2>Purchase Ticket</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="BusId">Select Bus</label>
+        <select id="BusId" name="BusId" class="form-control" required>
+            @foreach (var bus in Model.Buses)
+            {
+                    <option value="@bus.BusId">@bus.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="RouteId">Select Route</label>
+        <select id="RouteId" name="RouteId" class="form-control" required>
+            @foreach (var route in Model.Routes)
+            {
+                        <option value="@route.RouteId">@route.Name - @route.Dest</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Price">Ticket Price</label>
+        <input type="number" name="Price" id="Price" step="0.01" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Purchase Ticket</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+        <div class="alert alert-success mt-3">@Model.Message</div>
+}

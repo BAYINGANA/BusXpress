@@ -1,0 +1,68 @@
+﻿@page
+@{
+    Layout = null;
+}
+@model BusManagement.Pages.Admin.AssignDrivers.ManageAssignDriversModel
+@{
+    ViewData["Title"] = "Manage Driver Assignments";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Manage Driver Assignments</h2>
+
+<!-- Active Assignments -->
+<h3>Active Assignments</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Driver</th>
+            <th>Bus</th>
+            <th>Assignment Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in Model.Assignments)
+        {
+            <tr>
+                <td>@assignment.DriverName</td>
+                <td>@assignment.BusNumber</td>
+                <td>@assignment.AssignmentDate.ToString("yyyy-MM-dd")</td>
+                <td>@assignment.Status</td>
+                <td>
+                    <form method="post" asp-page-handler="RemoveAssignment">
+                        <input type="hidden" name="assignmentId" value="@assignment.AssignmentId" />
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Assign a New Driver -->
+<h3>Assign a New Driver</h3>
+<form method="post" asp-page-handler="AssignDriver">
+    <div class="form-group">
+        <label for="driverId">Driver</label>
+        <select id="driverId" name="driverId" class="form-control">
+            @foreach (var driver in Model.Drivers)
+            {
+                <option value="@driver.DriverId">@driver.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="busId">Bus</label>
+        <select id="busId" name="busId" class="form-control">
+            @foreach (var bus in Model.Buses)
+            {
+                <option value="@bus.BusId">@bus.BusNumber</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Driver</button>
+</form>
