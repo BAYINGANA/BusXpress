@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Clients\" />
     <Folder Include="Pages\Drivers\" />
   </ItemGroup>
 

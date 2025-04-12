@@ -1,0 +1,50 @@
+﻿@page
+@model BusXpress.Pages.Admin.IndexModel
+@{
+    Layout = null;  // Use the default layout for the page
+}
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<!-- Welcome Message Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Welcome, Admin!</h2>
+    <p class="text-center">You can manage all aspects of the system from here.</p>
+
+    <!-- Optional: Display more admin-related content below -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Buses</h5>
+                    <p class="card-text">Assign buses to drivers and manage the fleet.</p>
+                    <a href="/Admin/Buses/ManageBuses" class="btn btn-primary">Manage Buses</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Routes</h5>
+                    <p class="card-text">Define and manage routes for the buses.</p>
+                    <a href="/Admin/Routes/ManageRoutes" class="btn btn-primary">Manage Routes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Schedules</h5>
+                    <p class="card-text">Schedule buses for different times.</p>
+                    <a href="/Admin/Schedules/ManageSchedules" class="btn btn-primary">Manage Schedules</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
