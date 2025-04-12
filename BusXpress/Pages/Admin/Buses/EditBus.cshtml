@@ -1,0 +1,43 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Buses.EditBusModel
+
+@{
+    ViewData["Title"] = "Edit Bus";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Edit Bus</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="BusId">Bus ID</label>
+        <input type="number" class="form-control" id="BusId" name="BusId" asp-for="Bus.BusId" readonly required />
+    </div>
+
+    <div class="form-group">
+        <label for="BusNumber">Bus Number</label>
+        <input type="text" class="form-control" id="BusNumber" name="BusNumber" asp-for="Bus.BusNumber" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Capacity">Capacity</label>
+        <input type="number" class="form-control" id="Capacity" name="Capacity" asp-for="Bus.Capacity" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Model">Model</label>
+        <input type="text" class="form-control" id="Model" name="Model" asp-for="Bus.Model" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Status">Status</label>
+        <input type="text" class="form-control" id="Status" name="Status" asp-for="Bus.Status" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Bus</button>
+</form>
