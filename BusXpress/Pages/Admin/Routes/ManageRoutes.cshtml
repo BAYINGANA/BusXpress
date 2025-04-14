@@ -1,0 +1,46 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Routes.ManageRoutesModel
+
+@{
+    ViewData["Title"] = "Manage Routes";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Manage Routes</h2>
+
+<a href="/Admin/Routes/AddRoute" class="btn btn-success">Add New Route</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Distance (km)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var route in Model.Routes)
+        {
+                <tr>
+                    <td>@route.Origin</td>
+                    <td>@route.Destination</td>
+                    <td>@route.Distance</td>
+                    <td>
+                        <a href="/Admin/Routes/EditRoute?RouteId=@route.RouteId" class="btn btn-warning">Edit</a>
+
+                        <!-- Delete form -->
+                        <form method="post" asp-page-handler="Delete" asp-route-routeId="@route.RouteId" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+
