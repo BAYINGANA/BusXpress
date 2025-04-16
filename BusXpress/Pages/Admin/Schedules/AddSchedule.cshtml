@@ -1,0 +1,48 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Schedules.AddScheduleModel
+@{
+    ViewData["Title"] = "Add New Schedule";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Add New Schedule</h2>
+
+<!-- Dropdown for BusId and RouteId (for AddSchedule or EditSchedule) -->
+<form method="post">
+    <div class="form-group">
+        <label for="BusId">Select Bus</label>
+        <select id="BusId" name="BusId" class="form-control">
+            @foreach (var bus in Model.Buses)
+            {
+                <option value="@bus.BusId">@bus.BusNumber</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="RouteId">Select Route</label>
+        <select id="RouteId" name="RouteId" class="form-control">
+            @foreach (var route in Model.Routes)
+            {
+                <option value="@route.RouteId">@route.Origin to @route.Destination</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="DepartureTime">Departure Time</label>
+        <input type="datetime-local" id="DepartureTime" name="DepartureTime" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="ArrivalTime">Arrival Time</label>
+        <input type="datetime-local" id="ArrivalTime" name="ArrivalTime" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Schedule</button>
+</form>

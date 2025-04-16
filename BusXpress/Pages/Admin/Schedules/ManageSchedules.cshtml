@@ -1,0 +1,46 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Schedules.ManageSchedulesModel
+@{
+    ViewData["Title"] = "Manage Schedules";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Manage Schedules</h2>
+
+<a href="/Admin/Schedules/AddSchedule" class="btn btn-success">Add New Schedule</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bus ID</th>
+            <th>Route ID</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var schedule in Model.Schedules)
+        {
+            <tr>
+                <td>@schedule.BusId</td>
+                <td>@schedule.RouteId</td>
+                <td>@schedule.DepartureTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@schedule.ArrivalTime.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    <a href="/Admin/Schedules/EditSchedule?ScheduleId=@schedule.ScheduleId" class="btn btn-warning">Edit</a>
+
+                    <!-- Delete form -->
+                    <form method="post" asp-page-handler="Delete" asp-route-scheduleId="@schedule.ScheduleId" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

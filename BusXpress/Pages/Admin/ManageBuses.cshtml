@@ -1,0 +1,50 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.ManageBusesModel
+@{
+    ViewData["Title"] = "Manage Buses";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>Manage Buses</h2>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12 text-end mb-3">
+            <a class="btn btn-success" href="/Admin/Buses/index">Add New Bus</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Bus Number</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bus in Model.Buses)
+            {
+                <tr>
+                    <td>@bus.BusNumber</td>
+                    <td>@bus.Model</td>
+                    <td>@bus.Capacity</td>
+                    <td>@bus.Status</td>
+                    <td>
+                        <a href="/Admin/Buses/Edit/@bus.BusId" class="btn btn-primary btn-sm">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@bus.BusId" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
