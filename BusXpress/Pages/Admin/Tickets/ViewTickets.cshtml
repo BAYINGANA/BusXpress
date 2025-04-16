@@ -1,0 +1,69 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Tickets.ViewTicketsModel
+@{
+    ViewData["Title"] = "View Tickets";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+
+<h2>View Tickets</h2>
+
+<!-- Filter Form -->
+<form method="post">
+    <div class="form-group">
+        <label for="ClientId">Client</label>
+        <select asp-for="ClientId" class="form-control" asp-items="Model.Clients">
+            <option value="">--Select Client--</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="BusId">Bus</label>
+        <select asp-for="BusId" class="form-control" asp-items="Model.Buses">
+            <option value="">--Select Bus--</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="RouteId">Route</label>
+        <select asp-for="RouteId" class="form-control" asp-items="Model.Routes">
+            <option value="">--Select Route--</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+    <a href="/Admin/Tickets/ViewTickets" class="btn btn-secondary">Clear Filters</a>
+    <a href="@Url.Page("/Admin/Tickets/ViewTickets")?handler=ExportToCSV" class="btn btn-success">Export to CSV</a>
+</form>
+
+<h3>Tickets</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Client ID</th>
+            <th>Bus ID</th>
+            <th>Route ID</th>
+            <th>Date Issued</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.Tickets)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                <td>@ticket.ClientId</td>
+                <td>@ticket.BusId</td>
+                <td>@ticket.RouteId</td>
+                <td>@ticket.DateIssued.ToString("yyyy-MM-dd")</td>
+                <td>@ticket.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

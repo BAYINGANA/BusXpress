@@ -1,0 +1,36 @@
+﻿@page
+@{
+    Layout = null;  // Use the default layout for the page
+}
+@model BusXpress.Pages.Admin.Schedules.EditScheduleModel
+@{
+    ViewData["Title"] = "Edit Schedule";
+}
+
+<!-- Render the Admin Navigation Bar -->
+@await Html.PartialAsync("AdminNavigation")
+<h2>Edit Schedule</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="BusId">Bus ID</label>
+        <input type="number" class="form-control" id="BusId" name="BusId" asp-for="BusId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="RouteId">Route ID</label>
+        <input type="number" class="form-control" id="RouteId" name="RouteId" asp-for="RouteId" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DepartureTime">Departure Time</label>
+        <input type="datetime-local" class="form-control" id="DepartureTime" name="DepartureTime" asp-for="DepartureTime" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ArrivalTime">Arrival Time</label>
+        <input type="datetime-local" class="form-control" id="ArrivalTime" name="ArrivalTime" asp-for="ArrivalTime" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Schedule</button>
+</form>
