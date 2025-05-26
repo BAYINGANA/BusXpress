@@ -1,0 +1,140 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\pages\\clients\\purchase.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\pages\\clients\\purchase.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\pages\\clients\\purchase.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\pages\\clients\\purchase.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\pages\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\pages\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\pages\\signup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\pages\\signup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|c:\\users\\admin\\downloads\\busmanagement (1)\\busmanagement (1)\\busmanagement\\busmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{70ACA5ED-F909-4A90-8039-1091FA4878FC}|BusManagement\\BusManagement.csproj|solutionrelative:busmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Purchase.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Clients\\Purchase.cshtml",
+              "RelativeDocumentMoniker": "BusManagement\\Pages\\Clients\\Purchase.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Clients\\Purchase.cshtml",
+              "RelativeToolTip": "BusManagement\\Pages\\Clients\\Purchase.cshtml",
+              "ViewState": "AgIAAGMAAAAAAAAAAIBJwNgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-24T22:02:24.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Purchase.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Clients\\Purchase.cshtml.cs",
+              "RelativeDocumentMoniker": "BusManagement\\Pages\\Clients\\Purchase.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Clients\\Purchase.cshtml.cs",
+              "RelativeToolTip": "BusManagement\\Pages\\Clients\\Purchase.cshtml.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T22:01:14.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Signup.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Signup.cshtml.cs",
+              "RelativeDocumentMoniker": "BusManagement\\Pages\\Signup.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Signup.cshtml.cs",
+              "RelativeToolTip": "BusManagement\\Pages\\Signup.cshtml.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAIwN4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T20:47:17.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Program.cs",
+              "RelativeDocumentMoniker": "BusManagement\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Program.cs",
+              "RelativeToolTip": "BusManagement\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T12:55:08.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "BusManagement\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\appsettings.json",
+              "RelativeToolTip": "BusManagement\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-24T18:26:11.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Signup.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Signup.cshtml",
+              "RelativeDocumentMoniker": "BusManagement\\Pages\\Signup.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Downloads\\BusManagement (1)\\BusManagement (1)\\BusManagement\\BusManagement\\Pages\\Signup.cshtml",
+              "RelativeToolTip": "BusManagement\\Pages\\Signup.cshtml",
+              "ViewState": "AgIAADMBAAAAAAAAAAAIwDUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-24T09:10:31.128Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 54,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

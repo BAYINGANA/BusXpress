@@ -1,0 +1,128 @@
+﻿@page
+@{
+    Layout = null;
+}
+@model BusManagement.Pages.LicenseDownloadModel
+@{
+    ViewData["Title"] = "License Photo Download";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">License Photo Download</h4>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+
+                    @if (Model.ShowLicenseDetails && Model.DriverDetails != null)
+                    {
+                        <div class="mb-4">
+                            <h5>Driver Details</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Name:</strong> @Model.DriverDetails.Name</p>
+                                    <p><strong>License Number:</strong> @Model.DriverDetails.LicenceNumber</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong>Email:</strong> @Model.DriverDetails.Email</p>
+                                    <p><strong>Phone:</strong> @Model.DriverDetails.Phone</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                @if (!string.IsNullOrEmpty(Model.DriverDetails.LicencePhoto))
+                                {
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div class="mb-3">
+                                            @if (Model.IsLinkActive)
+                                            {
+                                                <a href="@Model.SecureDownloadUrl" class="btn btn-success me-2">
+                                                    <i class="bi bi-download"></i> Download License Photo
+                                                </a>
+                                                <p class="text-muted mt-2">
+                                                    <small>This link will expire in @Model.ExpiryMinutes minutes</small>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <form method="post">
+                                                    <input type="hidden" name="driverId" value="@Model.DriverDetails.Id" />
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Generate Download Link
+                                                    </button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning">
+                                        No license photo available for this driver.
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <form method="post" asp-page-handler="Search">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="driverEmail" class="form-label">Driver Email</label>
+                                        <input type="email" id="driverEmail" name="driverEmail" class="form-control" placeholder="Enter driver email" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="licenseNumber" class="form-label">License Number</label>
+                                        <input type="text" id="licenseNumber" name="licenseNumber" class="form-control" placeholder="Enter license number" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Search Driver</button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.TokenValidationMessage))
+{
+    <div class="modal fade" id="tokenModal" tabindex="-1" aria-labelledby="tokenModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tokenModalLabel">Download Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>@Model.TokenValidationMessage</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tokenModal = new bootstrap.Modal(document.getElementById('tokenModal'));
+            tokenModal.show();
+        });
+    </script>
+}

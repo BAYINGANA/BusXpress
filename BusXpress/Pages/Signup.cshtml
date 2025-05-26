@@ -1,0 +1,322 @@
+﻿@page
+@model BusManagement.Pages.SignupModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Signup";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BusManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BusManagement.styles.css" asp-append-version="true" />
+    <style>
+        /* Full page gradient background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Background video */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Signup container styling */
+        .signup-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Card styling */
+        .signup-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+            .signup-card .card-header {
+                background: linear-gradient(135deg, #283e51, #4b79a1);
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                padding: 20px;
+                color: #fff;
+                text-align: center;
+            }
+
+        .btn-signup {
+            background-color: #4b79a1;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-signup:hover {
+                background-color: #3a6392;
+            }
+
+        /* Upload status styles */
+        .upload-status {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 10px;
+            margin-top: 5px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            background-color: #4b79a1;
+        }
+
+        .upload-success {
+            color: #198754;
+        }
+
+        .upload-error {
+            color: #dc3545;
+        }
+
+        /* Alert styling */
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.9);
+            border-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop class="bg-video">
+        <source src="@Url.Content("~/uploads/videos/bus_in_motion.mp4")" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="signup-wrapper container mt-5 ">
+        <div class="col-md-5 col-lg-5">
+            <div class="card signup-card">
+                <div class="card-header text-white text-center py-3">
+                    <h4 class="mb-0">Sign Up</h4>
+                </div>
+                <div class="card-body p-4">
+                    @* Display ModelState errors (if any) *@
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <p>@error.ErrorMessage</p>
+                            }
+                        </div>
+                    }
+                    <form method="post" enctype="multipart/form-data" id="signupForm">
+                        <div class="form-group mb-3">
+                            <label for="UserType" class="form-label">Register As</label>
+                            <select id="UserType" name="UserType" asp-for="UserType" class="form-control" required>
+                                <option value="">-- Select --</option>
+                                <option value="Client">Client</option>
+                                <option value="Driver">Driver</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input id="Name" name="Name" asp-for="Name" class="form-control" required />
+                        </div>
+                        <!-- START: Driver-specific fields -->
+                        <div id="DriverFields" style="display: none;">
+                            <div class="form-group mb-3">
+                                <label for="LicenceNumber" class="form-label">Licence Number</label>
+                                <input id="LicenceNumber" name="LicenceNumber" asp-for="LicenceNumber" class="form-control" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="LicencePhoto" class="form-label">Upload Licence Photo</label>
+                                <input type="file" id="LicencePhoto" name="LicencePhoto" asp-for="LicencePhoto" class="form-control" accept="image/*" />
+                                <!-- Upload status indicators -->
+                                <div id="uploadStatus" class="upload-status">
+                                    <div class="progress">
+                                        <div id="uploadProgressBar" class="progress-bar" role="progressbar" style="width: 0%;"
+                                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            0%
+                                        </div>
+                                    </div>
+                                    <small id="uploadMessage" class="form-text mt-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Driver-specific fields -->
+                        <div class="form-group mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input id="Email" name="Email" asp-for="Email" type="email" class="form-control" required />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            <input id="Password" name="Password" asp-for="Password" type="password" class="form-control" required />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="Phone" class="form-label">Phone</label>
+                            <input id="Phone" name="Phone" asp-for="Phone" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-signup w-100 mt-3" id="submitBtn">Sign Up</button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p>Already have an account? <a href="/Login" class="btn btn-link p-0">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Place the script at the end (since Layout = null, section Scripts isn't processed) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // Toggle driver-specific fields and required attributes
+    document.getElementById("UserType").addEventListener("change", function () {
+        const userType = this.value;
+        const driverFields = document.getElementById("DriverFields");
+        const licenceInput = document.getElementById("LicenceNumber");
+        const licencePhotoInput = document.getElementById("LicencePhoto");
+        if (userType === "Driver") {
+            driverFields.style.display = "block";
+            licenceInput.setAttribute("required", "required");
+            licencePhotoInput.setAttribute("required", "required");
+        } else {
+            driverFields.style.display = "none";
+            licenceInput.removeAttribute("required");
+            licencePhotoInput.removeAttribute("required");
+        }
+    });
+
+    // File upload progress handling
+    document.getElementById("LicencePhoto").addEventListener("change", function(e) {
+        const file = this.files[0];
+        if (file) {
+            // Show file size and type information
+            const uploadStatus = document.getElementById("uploadStatus");
+            const uploadMessage = document.getElementById("uploadMessage");
+            uploadStatus.style.display = "block";
+
+            // Format file size
+            const fileSize = (file.size / 1024).toFixed(2);
+            const fileSizeText = fileSize > 1024 ?
+                `${(fileSize / 1024).toFixed(2)} MB` :
+                `${fileSize} KB`;
+
+            uploadMessage.innerHTML = `Selected: ${file.name} (${fileSizeText})`;
+            uploadMessage.className = "form-text mt-1";
+
+            // Validate file type and size
+            const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (!validTypes.includes(file.type)) {
+                uploadMessage.innerHTML = "Error: Please select a valid image file (JPEG, PNG)";
+                uploadMessage.className = "form-text mt-1 upload-error";
+                return;
+            }
+
+            if (file.size > maxSize) {
+                uploadMessage.innerHTML = "Error: File size exceeds 5MB limit";
+                uploadMessage.className = "form-text mt-1 upload-error";
+                return;
+            }
+        }
+    });
+
+    // Handle form submission with AJAX to show real upload progress
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+        const userType = document.getElementById("UserType").value;
+
+        // Only intercept if it's a driver registration with file upload
+        if (userType === "Driver" && document.getElementById("LicencePhoto").files.length > 0) {
+            e.preventDefault();
+
+            const uploadStatus = document.getElementById("uploadStatus");
+            const progressBar = document.getElementById("uploadProgressBar");
+            const uploadMessage = document.getElementById("uploadMessage");
+            const submitBtn = document.getElementById("submitBtn");
+
+            uploadStatus.style.display = "block";
+            submitBtn.disabled = true;
+
+            // Create FormData object
+            const formData = new FormData(this);
+
+            // Create and configure AJAX request
+            const xhr = new XMLHttpRequest();
+
+            // Track upload progress
+            xhr.upload.addEventListener("progress", function(event) {
+                if (event.lengthComputable) {
+                    const percentComplete = Math.round((event.loaded / event.total) * 100);
+                    progressBar.style.width = percentComplete + "%";
+                    progressBar.setAttribute("aria-valuenow", percentComplete);
+                    progressBar.textContent = percentComplete + "%";
+                }
+            });
+
+            // Handle completion
+            xhr.addEventListener("load", function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Success - usually would check response for success indicator
+                    uploadMessage.innerHTML = "Upload successful!";
+                    uploadMessage.className = "form-text mt-1 upload-success";
+
+                    // Submit the form now that upload is complete
+                    setTimeout(() => {
+                        document.getElementById("signupForm").submit();
+                    }, 500);
+                } else {
+                    // Server error
+                    uploadMessage.innerHTML = "Upload failed. Please try again.";
+                    uploadMessage.className = "form-text mt-1 upload-error";
+                    submitBtn.disabled = false;
+                }
+            });
+
+            // Handle network errors
+            xhr.addEventListener("error", function() {
+                uploadMessage.innerHTML = "Network error occurred. Please try again.";
+                uploadMessage.className = "form-text mt-1 upload-error";
+                submitBtn.disabled = false;
+            });
+
+            // Handle timeout
+            xhr.addEventListener("timeout", function() {
+                uploadMessage.innerHTML = "Upload timed out. Please try again.";
+                uploadMessage.className = "form-text mt-1 upload-error";
+                submitBtn.disabled = false;
+            });
+
+            // Send the request
+            xhr.open("POST", "/Signup");
+            xhr.send(formData);
+        }
+    });
+
+    // Initialize form on page load
+    window.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("UserType").dispatchEvent(new Event("change"));
+    });
+</script>
+</html>

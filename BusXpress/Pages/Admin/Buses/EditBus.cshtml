@@ -1,0 +1,158 @@
+﻿@page
+@model BusManagement.Pages.Admin.Buses.EditBusModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Edit Bus";
+}
+<!-- Admin Navigation -->
+@await Html.PartialAsync("AdminNavigation")
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Bus Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f9f9f9;
+            color: #212529;
+        }
+
+        h2 {
+            color: #0d6efd;
+        }
+
+        .form-control,
+        .form-label,
+        .form-select {
+            color: #212529;
+        }
+
+            .form-control:focus,
+            .form-select:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+            }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+            .btn-primary:hover {
+                background-color: #0b5ed7;
+                border-color: #0a58ca;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5c636a;
+                border-color: #565e64;
+            }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #283e51, #4b79a1);
+            color: #f8f9fa;
+        }
+
+        .dark-mode .form-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .form-control,
+        .dark-mode .form-select {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+            border: 1px solid #444;
+        }
+
+            .dark-mode .form-control:focus,
+            .dark-mode .form-select:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.4);
+            }
+
+        .dark-mode .form-label {
+            color: #e9ecef;
+        }
+
+        .dark-mode .btn-primary,
+        .dark-mode .btn-secondary {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Edit Bus</h2>
+            <a href="/Admin/Buses/ManageBuses" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle me-1"></i> Back to Buses
+            </a>
+        </div>
+
+        <form method="post" class="form-container">
+            <div class="mb-3">
+                <label for="BusId" class="form-label">Bus ID</label>
+                <input type="number" class="form-control" id="BusId" name="BusId" asp-for="Bus.BusId" readonly required />
+            </div>
+
+            <div class="mb-3">
+                <label for="BusNumber" class="form-label">Bus Number</label>
+                <input type="text" class="form-control" id="BusNumber" name="BusNumber" asp-for="Bus.BusNumber" required placeholder="Enter Bus Number" />
+            </div>
+
+            <div class="mb-3">
+                <label for="Capacity" class="form-label">Capacity</label>
+                <input type="number" class="form-control" id="Capacity" name="Capacity" asp-for="Bus.Capacity" required placeholder="Enter Bus Capacity" />
+            </div>
+
+            <div class="mb-3">
+                <label for="Model" class="form-label">Model</label>
+                <input type="text" class="form-control" id="Model" name="Model" asp-for="Bus.Model" required placeholder="Enter Bus Model" />
+            </div>
+
+            <div class="mb-3">
+                <label for="Status" class="form-label">Status</label>
+                <select class="form-select" id="Status" name="Status" asp-for="Bus.Status" required>
+                    <option value="">Select Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                    <option value="In Service">In Service</option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-pencil-square me-1"></i> Update Bus
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

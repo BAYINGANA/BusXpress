@@ -1,0 +1,113 @@
+﻿@page
+@model BusManagement.Pages.VerifyOtpModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Verify Code";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BusManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BusManagement.styles.css" asp-append-version="true" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.3);
+            z-index: -1;
+        }
+
+        .otp-wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .otp-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .otp-header {
+            background: linear-gradient(135deg, #283e51, #4b79a1);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .otp-body {
+            padding: 25px;
+        }
+
+        .btn-verify {
+            background-color: #4b79a1;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-verify:hover {
+                background-color: #3a6392;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Background Video + Overlay -->
+    <div class="overlay"></div>
+    <video autoplay muted loop class="bg-video">
+        <source src="@Url.Content("~/uploads/videos/bus_in_motion.mp4")" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- OTP Entry Card -->
+    <div class="otp-wrapper">
+        <div class="card otp-card">
+            <div class="otp-header">
+                <h5 class="mb-0">Enter Verification Code</h5>
+            </div>
+            <div class="card-body otp-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">One-Time Code</label>
+                        <input asp-for="Code" maxlength="6" class="form-control" required />
+                    </div>
+                    <button class="btn btn-verify w-100" type="submit">Verify &amp; Login</button>
+                </form>
+
+                @if (Model.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

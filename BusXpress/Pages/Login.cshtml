@@ -1,0 +1,121 @@
+﻿@page
+@model BusManagement.Pages.LoginModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@ViewData["Title"] - BusManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Video background */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* You can change to 'contain' or 'fill' if cover crops too much */
+            z-index: -1;
+        }
+
+
+        /* Centered container */
+        .login-wrapper {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Login card */
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #283e51, #4b79a1);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login-body {
+            padding: 30px;
+        }
+
+        .btn-login {
+            background-color: #4b79a1;
+            border: none;
+            color: #fff;
+        }
+
+            .btn-login:hover {
+                background-color: #3a6392;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Background Video -->
+    <div style="position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.3); z-index:0;">
+        <video autoplay muted loop class="bg-video">
+            <source src="@Url.Content("~/uploads/videos/bus_in_motion.mp4")" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="login-wrapper">
+        <div class="col-md-6 col-lg-4">
+            <div class="card login-card">
+                <div class="login-header">
+                    <h4 class="mb-0">Login</h4>
+                </div>
+                <div class="card-body login-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">User Type</label>
+                            <select asp-for="UserType" class="form-select" required>
+                                <option value="">Select...</option>
+                                <option>Client</option>
+                                <option>Driver</option>
+                                <option>Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" required />
+                        </div>
+                        <button class="btn btn-login w-100">LogIn</button>
+                    </form>
+                    <div class="text-center mt-4">
+                        <p>Do not have an account? <a href="/Signup" class="btn btn-link p-0">Create an account</a></p>
+                    </div>
+                    @if (Model.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

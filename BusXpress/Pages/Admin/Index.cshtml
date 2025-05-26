@@ -1,0 +1,283 @@
+﻿@page
+@model dynamic    
+@{
+    Layout = null;
+    ViewData["Title"] = "Admin Dashboard";
+}
+@await Html.PartialAsync("AdminNavigation")
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding -top: 80px;
+        }
+
+        h2, h5, h6 {
+            color: #283e51;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .dashboard-container {
+            padding: 3rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .dashboard-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+            .card:hover {
+                transform: scale(1.02);
+            }
+
+            .card h6 {
+                color: #4b79a1;
+                font-weight: 600;
+            }
+
+            .card h2 {
+                font-size: 2rem;
+                color: #283e51;
+                margin: 0;
+            }
+
+        .text-center {
+            color: #4b79a1;
+        }
+
+        canvas {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        @@media (max-width: 768px) {
+            .row.g-3 .col-md-2
+
+        {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .row.mb-5 .col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        }
+        
+
+        /* Dark Mode Theme */
+        body.dark-mode {
+            background: linear-gradient(135deg, #283e51, #4b79a1);
+            color: #f1f1f1;
+        }
+
+            body.dark-mode h2,
+            body.dark-mode h5,
+            body.dark-mode h6 {
+                color: #f1f1f1;
+            }
+
+            body.dark-mode .card {
+                background: rgba(255, 255, 255, 0.05);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            }
+
+            body.dark-mode canvas {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: white;
+            }
+
+            body.dark-mode .text-center {
+                color: #ffffff;
+            }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container dashboard-container">
+       
+        <!-- EXISTING WELCOME & MANAGE CARDS -->
+        <div class="container mt-5">
+            <h2 class="text-center">Welcome, Admin!</h2>
+            <p class="text-center">You can manage all aspects of the system from here.</p>
+            <div class="row mt-4">
+            </div>
+        </div>
+	
+        <!-- REAL-TIME METRICS -->
+        <div class="d-flex flex-wrap justify-content-between gap-3 mb-5">
+            <div class="card dashboard-card text-center p-3 flex-fill" style="min-width: 180px; max-width: 19%;">
+                <i class="fas fa-bus fa-2x text-primary mb-2"></i>
+                <h6>Total Buses</h6>
+                <h2 id="busCount">0</h2>
+            </div>
+            <div class="card dashboard-card text-center p-3 flex-fill" style="min-width: 180px; max-width: 19%;">
+                <i class="fas fa-id-badge fa-2x text-primary mb-2"></i>
+                <h6>Total Drivers</h6>
+                <h2 id="driverCount">0</h2>
+            </div>
+            <div class="card dashboard-card text-center p-3 flex-fill" style="min-width: 180px; max-width: 19%;">
+                <i class="fas fa-calendar-alt fa-2x text-primary mb-2"></i>
+                <h6>Today's Schedules</h6>
+                <h2 id="scheduleCount">0</h2>
+            </div>
+            <div class="card dashboard-card text-center p-3 flex-fill" style="min-width: 180px; max-width: 19%;">
+                <i class="fas fa-ticket-alt fa-2x text-primary mb-2"></i>
+                <h6>Tickets Sold</h6>
+                <h2 id="ticketsCount">0</h2>
+            </div>
+            <div class="card dashboard-card text-center p-3 flex-fill" style="min-width: 180px; max-width: 19%;">
+                <i class="fas fa-dollar-sign fa-2x text-primary mb-2"></i>
+                <h6>Today's Revenue</h6>
+                <h2 id="revenueCount">0.00</h2>
+            </div>
+        </div>
+
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h5>Tickets Sold Over Time</h5>
+                <canvas id="ticketsChart" height="200"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h5>Revenue Over Time</h5>
+                <canvas id="revenueChart" height="200"></canvas>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+
+<!-- INLINE SCRIPTS: must be after all HTML when Layout=null -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.0/signalr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  console.log("🔔 Admin Dashboard scripts loading…");
+
+  // Chart data containers
+  const timeLabels   = [];
+  const ticketsData  = [];
+  const revenueData  = [];
+
+  // Initialize charts
+  const ticketsChart = new Chart(
+    document.getElementById('ticketsChart').getContext('2d'),
+    {
+      type: 'line',
+      data: {
+        labels: timeLabels,
+        datasets: [{
+          label: 'Tickets Sold',
+          data: ticketsData,
+          tension: 0.4,
+          borderColor: '#007bff',
+          backgroundColor: 'rgba(0,123,255,0.1)',
+          fill: true,
+          pointRadius: 3
+        }]
+      },
+      options: { 
+          responsive:true,
+          animation: true,
+          plugins: {
+                legend: { display: true, position: 'top' },
+                tooltip: { mode: 'index', intersect: false }
+          },
+          scales: {
+                x: { title: { display: true, text: 'Time' } },
+                y: { title: { display: true, text: 'Tickets Sold' }}
+          }
+      }
+    }
+  );
+    const revenueChart = new Chart(
+      document.getElementById('revenueChart').getContext('2d'),
+      {
+        type: 'line',
+        data: {
+          labels: timeLabels,
+          datasets: [{
+            label: 'Revenue',
+            data: revenueData,
+            tension: 0.4,
+            borderColor: '#28a745',
+            backgroundColor: 'rgba(40,167,69,0.1)',
+            fill: true,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: false,
+          plugins: {
+            legend: { display: true, position: 'top' },
+            tooltip: { mode: 'index', intersect: false }
+          },
+          scales: {
+            x: { title: { display: true, text: 'Time' }, ticks: { color: 'rgba(40,167,69)'} },
+            y: { title: { display: true, text: 'Revenue'}}
+          }
+        }
+      }
+    );
+
+  // Setup SignalR
+  const connection = new signalR.HubConnectionBuilder()
+    .withUrl('/hubs/dashboard')
+    .build();
+
+  connection.on('ReceiveAdminUpdate', upd => {
+    console.log('✅ Received update:', upd);
+
+    document.getElementById('busCount').innerText      = upd.totalBuses;
+    document.getElementById('driverCount').innerText   = upd.totalDrivers;
+    document.getElementById('scheduleCount').innerText = upd.schedulesToday;
+    document.getElementById('ticketsCount').innerText  = upd.ticketsSold;
+    document.getElementById('revenueCount').innerText  = upd.revenue.toFixed(2);
+
+    timeLabels.push(upd.timestamp);
+    ticketsData.push(upd.ticketsSold);
+    revenueData.push(upd.revenue);
+
+    if (timeLabels.length > 20) {
+      timeLabels.shift();
+      ticketsData.shift();
+      revenueData.shift();
+    }
+
+    ticketsChart.update();
+    revenueChart.update();
+  });
+
+  connection.start()
+    .then(() => console.log('✅ SignalR connected!'))
+    .catch(err => console.error('❌ SignalR error:', err));
+</script>
+
+
