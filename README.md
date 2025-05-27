@@ -1,7 +1,7 @@
 # 🚍 BusXpress – Bus Management System
 **BusXpress** is a web-based Ticket booking and management system built with ASP.NET Razor Pages. It allows admins to manage buses, routes, schedules, and view ticket bookings, while clients can book and download tickets.
 
-🛠️ Getting Started
+## 🛠️ Getting Started
 Clone the repository:
 
 bash
