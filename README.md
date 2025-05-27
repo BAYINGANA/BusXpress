@@ -75,7 +75,7 @@ Real-Time (SignalR + HostedService)
    * Buses, Routes, Schedule, Tickets, DriverAssignments
 3. Configure connection string in `appsettings.json`:
 
-   ```json
+   ```sql
    "ConnectionStrings": {
      "DefaultConnection": "Server=.;Database=BusManagementDB;Trusted_Connection=True;"
    }
@@ -85,7 +85,7 @@ Real-Time (SignalR + HostedService)
 
 In `appsettings.json` set:
 
-```json
+```sql
 "ConnectionStrings": {
   "connstring": "<your connection string>"
 },
@@ -132,3 +132,13 @@ Admins receive live metrics via SignalR. Background service polls every 30s and 
 ## License
 
 This project is licensed under the MIT License.
+
+## Team Members
+
+| **Name**                  | **ID**   |
+|---------------------------|----------|
+| **Sine Daella Lynda**     | 26589    |
+| **Gihozo Bayingana Divine**   | 25429    |
+| **Ikirezi Cyuzuzo Melissa**        | 25345    |
+| **Ishimwe Uwonizeye Achille**       | 25782    |
+| **Hirwa Clement Rhodin** | 25787    |
