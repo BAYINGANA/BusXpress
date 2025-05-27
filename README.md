@@ -3,11 +3,9 @@
 
 ## 🛠️ Getting Started
 Clone the repository:
-
-bash
-Copy
-Edit
+```bash
 git clone https://github.com/BAYINGANA/BusXpress.git
+```
 ## Table of Contents
 
 * [Features](#features)
